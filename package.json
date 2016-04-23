@@ -1,0 +1,19 @@
+{
+  "name": "babel-plugin-inline-json-values",
+  "version": "1.0.0",
+  "description": "",
+  "repository": "mwilliams-change/babel-plugin-inline-json-values",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "devDependencies": {
+    "babel": "^5.6.0"
+  },
+  "scripts": {
+    "build": "babel-plugin build",
+    "push": "babel-plugin publish",
+    "test": "babel-plugin test"
+  },
+  "keywords": [
+    "babel-plugin"
+  ]
+}
