@@ -1,8 +1,8 @@
 {
-  "name": "babel-plugin-inline-json-values",
+  "name": "babel-plugin-inline-json-config-values",
   "version": "1.0.0",
   "description": "",
-  "repository": "mwilliams-change/babel-plugin-inline-json-values",
+  "repository": "mwilliams-change/babel-plugin-inline-json-config-values",
   "license": "MIT",
   "main": "lib/index.js",
   "devDependencies": {

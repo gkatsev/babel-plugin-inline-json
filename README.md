@@ -1,11 +1,11 @@
-# babel-plugin-inline-json-values
+# babel-plugin-inline-json-config-values
 
 
 
 ## Installation
 
 ```sh
-$ npm install babel-plugin-inline-json-values
+$ npm install babel-plugin-inline-json-config-values
 ```
 
 ## Usage
@@ -16,20 +16,20 @@ $ npm install babel-plugin-inline-json-values
 
 ```json
 {
-  "plugins": ["inline-json-values"]
+  "plugins": ["inline-json-config-values"]
 }
 ```
 
 ### Via CLI
 
 ```sh
-$ babel --plugins inline-json-values script.js
+$ babel --plugins inline-json-config-values script.js
 ```
 
 ### Via Node API
 
 ```javascript
 require("babel-core").transform("code", {
-  plugins: ["inline-json-values"]
+  plugins: ["inline-json-config-values"]
 });
 ```
