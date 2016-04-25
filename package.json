@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-inline-json-config-values",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "authors": [
     "Matt Williams <mwilliams@change.org> (https://github.com/mwilliams-change)"
   ],
