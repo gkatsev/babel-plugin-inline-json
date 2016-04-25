@@ -3,7 +3,7 @@ import path from 'path';
 export default function({ Plugin, types: t }) {
   return new Plugin('inline-json-config-values', {
     visitor: {
-      MemberExpression: function MemberExpression(node) {
+      MemberExpression: function MemberExpression(node, parent, scope, file) {
         var re = new RegExp(file.opts.extra['inline-json-config-values'].matchPattern, 'g');
         if (t.isCallExpression(node.object) &&
             t.isIdentifier(node.object.callee, { name: 'require' }) &&
