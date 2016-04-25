@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-inline-json-config-values",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "repository": "mwilliams-change/babel-plugin-inline-json-config-values",
   "license": "MIT",
