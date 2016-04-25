@@ -16,7 +16,12 @@ $ npm install babel-plugin-inline-json-config-values
 
 ```json
 {
-  "plugins": ["inline-json-config-values"]
+  "plugins": ["inline-json-config-values"],
+  "extra": {
+    "inline-json-config-values": {
+      "matchPattern": "server-config"
+    }
+  }
 }
 ```
 
@@ -30,6 +35,11 @@ $ babel --plugins inline-json-config-values script.js
 
 ```javascript
 require("babel-core").transform("code", {
-  plugins: ["inline-json-config-values"]
+  "plugins": ["inline-json-config-values"],
+  "extra": {
+    "inline-json-config-values": {
+      "matchPattern": "server-config"
+    }
+  }
 });
 ```
