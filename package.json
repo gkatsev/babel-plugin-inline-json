@@ -1,22 +1,29 @@
 {
   "name": "babel-plugin-inline-json-config-values",
-  "version": "0.1.5",
+  "version": "1.0.0",
+  "repository": "mwilliams-change/babel-plugin-inline-json-config-values",
+  "license": "MIT",
   "authors": [
     "Matt Williams <mwilliams@change.org> (https://github.com/mwilliams-change)"
   ],
-  "description": "",
-  "repository": "mwilliams-change/babel-plugin-inline-json-config-values",
-  "license": "MIT",
   "main": "lib/index.js",
   "devDependencies": {
-    "babel": "^5.6.0"
+    "babel-cli": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "mocha": "^2.4.5"
   },
   "scripts": {
-    "build": "babel-plugin build",
-    "push": "babel-plugin publish",
-    "test": "babel-plugin test"
+    "clean": "rm -rf lib",
+    "build": "babel src -d lib",
+    "example": "npm run build && babel example/input.js -o example/output.js",
+    "test": "mocha --compilers js:babel-register",
+    "test:watch": "npm run test -- --watch",
+    "prepublish": "npm run clean && npm run build"
   },
   "keywords": [
+    "babel",
+    "plugin",
     "babel-plugin"
   ]
 }

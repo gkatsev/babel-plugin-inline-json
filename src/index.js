@@ -1,21 +1,23 @@
-import path from 'path';
+import nodePath from 'path';
 
-export default function({ Plugin, types: t }) {
-  return new Plugin('inline-json-config-values', {
+export default function ({types: t}) {
+  return {
     visitor: {
-      MemberExpression: function MemberExpression(node, parent, scope, file) {
-        var re = new RegExp(file.opts.extra['inline-json-config-values'].matchPattern, 'g');
+      MemberExpression(path, state) {
+        var {node, file} = path;
+        var re = new RegExp(state.opts.matchPattern, 'g');
+
         if (t.isCallExpression(node.object) &&
             t.isIdentifier(node.object.callee, { name: 'require' }) &&
             t.isLiteral(node.object.arguments[0]) &&
             node.object.arguments[0].value.match(re)) {
-          let srcPath = path.resolve(this.state.opts.filename);
-          let pkg = require(path.join(srcPath, '..', node.object.arguments[0].value));
+          let srcPath = nodePath.resolve(state.file.opts.filename);
+          let pkg = require(nodePath.join(srcPath, '..', node.object.arguments[0].value));
           let value = pkg[node.property.name];
 
-          return t.expressionStatement(t.valueToNode(value));
+          path.replaceWith(t.expressionStatement(t.valueToNode(value)));
         }
       }
     }
-  });
+  };
 }
