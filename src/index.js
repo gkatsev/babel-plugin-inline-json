@@ -5,7 +5,7 @@ export default function ({types: t}) {
     visitor: {
       MemberExpression(path, state) {
         var {node, file} = path;
-        var re = new RegExp(state.opts.matchPattern, 'g');
+        var re = new RegExp(state.opts.matchPattern || '.json$', 'g');
 
         if (t.isCallExpression(node.object) &&
             t.isIdentifier(node.object.callee, { name: 'require' }) &&
