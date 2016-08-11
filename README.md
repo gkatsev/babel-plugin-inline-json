@@ -27,7 +27,7 @@ var foo = "bar";
 ## Installation
 
 ```sh
-$ npm install babel-plugin-inline-json-config-values --save-dev
+$ npm install babel-plugin-inline-json --save-dev
 ```
 
 ## Usage
@@ -38,21 +38,21 @@ $ npm install babel-plugin-inline-json-config-values --save-dev
 
 ```json
 {
-  "plugins": [["inline-json-config-values", {"matchPattern": "config"}]]
+  "plugins": [["inline-json", {"matchPattern": "config"}]]
 }
 ```
 
 ### Via CLI
 
 ```sh
-$ babel --plugins inline-json-config-values script.js
+$ babel --plugins inline-json script.js
 ```
 
 ### Via Node API
 
 ```javascript
 require("babel-core").transform("code", {
-  "plugins": [["inline-json-config-values", {"matchPattern": "config"}]]
+  "plugins": [["inline-json", {"matchPattern": "config"}]]
 });
 ```
 
