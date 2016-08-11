@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-inline-json",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "repository": "gkatsev/babel-plugin-inline-json",
   "license": "MIT",
   "authors": [
