@@ -1,4 +1,4 @@
-# babel-plugin-inline-json-config-values
+# babel-plugin-inline-json
 
 Inline values from a JSON file eg. a config file
 
@@ -55,3 +55,6 @@ require("babel-core").transform("code", {
   "plugins": [["inline-json-config-values", {"matchPattern": "config"}]]
 });
 ```
+
+## Origin
+this is based on @mwilliams-change's [babel-plugin-inline-json-config-values](https://github.com/mwilliams-change/babel-plugin-inline-json-config-values).

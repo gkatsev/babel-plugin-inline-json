@@ -1,10 +1,11 @@
 {
-  "name": "babel-plugin-inline-json-config-values",
+  "name": "babel-plugin-inline-json",
   "version": "1.0.0",
-  "repository": "mwilliams-change/babel-plugin-inline-json-config-values",
+  "repository": "gkatsev/babel-plugin-inline-json",
   "license": "MIT",
   "authors": [
-    "Matt Williams <mwilliams@change.org> (https://github.com/mwilliams-change)"
+    "Matt Williams <mwilliams@change.org> (https://github.com/mwilliams-change)",
+    "Gary Katsevman <git@gkatsev.com> (http://gkatsev.com)"
   ],
   "main": "lib/index.js",
   "devDependencies": {
