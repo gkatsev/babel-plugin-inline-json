@@ -9,13 +9,16 @@
   "main": "lib/index.js",
   "devDependencies": {
     "babel-cli": "^6.9.0",
+    "babel-core": "^6.11.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.11.6",
     "mocha": "^2.4.5"
   },
   "scripts": {
     "clean": "rm -rf lib",
     "build": "babel src -d lib",
+    "watch": "babel -w src -d lib",
     "example": "npm run build && babel example/input.js -o example/output.js",
     "test": "mocha --compilers js:babel-register",
     "test:watch": "npm run test -- --watch",
@@ -25,5 +28,8 @@
     "babel",
     "plugin",
     "babel-plugin"
-  ]
+  ],
+  "dependencies": {
+    "resolve": "^1.1.7"
+  }
 }
