@@ -2,6 +2,8 @@
 
 Inline values from a JSON file eg. a config file
 
+> Does not work if the argument to `require()` is an identifier or a template literal
+
 ## Example
 
 **config.json**:

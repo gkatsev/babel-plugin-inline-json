@@ -12,6 +12,7 @@ export default function ({types: t}) {
         if (t.isCallExpression(node.object) &&
             t.isIdentifier(node.object.callee, { name: 'require' }) &&
             t.isLiteral(node.object.arguments[0]) &&
+            !t.isTemplateLiteral(node.object.arguments[0]) &&
             node.object.arguments[0].value.match(re)) {
           let srcPath = nodePath.resolve(state.file.opts.filename);
           let requireText = node.object.arguments[0].value;
