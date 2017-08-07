@@ -1,4 +1,5 @@
 # babel-plugin-inline-json
+[![Build Status](https://travis-ci.org/gkatsev/babel-plugin-inline-json.svg?branch=master)](https://travis-ci.org/gkatsev/babel-plugin-inline-json)
 
 Inline values from a JSON file eg. a config file
 
