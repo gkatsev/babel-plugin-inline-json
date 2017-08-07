@@ -1,5 +1,9 @@
+var config = {
+  foo: 'bar'
+};
 var foo = 'bar';
-var baz = '6.11.4';
+var name = 'babel-plugin-inline-json';
 
+console.log(config);
 console.log(foo);
-console.log(baz);
+console.log(name);
