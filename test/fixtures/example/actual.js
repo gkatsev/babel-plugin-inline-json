@@ -1,5 +1,7 @@
+var config = require('config');
 var foo = require('config').foo;
-var baz = require('babel-cli/package.json').version;
+var name = require('../../../package.json').name;
 
+console.log(config);
 console.log(foo);
-console.log(baz);
+console.log(name);
