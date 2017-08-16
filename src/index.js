@@ -17,13 +17,24 @@ const readJSON = (node, state) => {
   let requireText = node.arguments[0].value;
 
   let jsonPath = nodePath.join(srcPath, '..', requireText);
-  let json;
+  let json = null;
+
   if (fs.existsSync(jsonPath + '.json')) {
     json = require(jsonPath);
   } else {
-    json = require(resolve.sync(requireText, {
+    const file = resolve.sync(requireText, {
       basedir: nodePath.dirname(srcPath)
-    }));
+    });
+
+    if (fs.existsSync(file)) {
+      const fileText = fs.readFileSync(file, 'utf8');
+
+      try {
+        json = JSON.parse(fileText);
+      } catch (e) {
+        // if unable to JSON.parse, not a JSON file, so, ignore and move on
+      }
+    }
   }
 
   return json;
@@ -40,7 +51,11 @@ export default function () {
         let { node } = path;
 
         if (isMatchedRequireCall(node, state)) {
-          replacePath(path, readJSON(node, state))
+          const json = readJSON(node, state);
+
+          if (json) {
+            replacePath(path, json);
+          }
         }
       },
 
@@ -48,7 +63,11 @@ export default function () {
         let { node } = path;
 
         if (isMatchedRequireCall(node.object, state)) {
-          replacePath(path, readJSON(node.object, state)[node.property.name]);
+          const json = readJSON(node.object, state);
+
+          if (json) {
+            replacePath(path, json[node.property.name]);
+          }
         }
       }
     }
