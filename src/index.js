@@ -12,10 +12,8 @@ const isMatchedRequireCall = (node, state) => {
     node.arguments[0].value.match(re);
 };
 
-const readJSON = (node, state) => {
-  let srcPath = nodePath.resolve(state.file.opts.filename);
-  let requireText = node.arguments[0].value;
-
+const readJSON = (path, requireText) => {
+  let srcPath = nodePath.resolve(path);
   let jsonPath = nodePath.join(srcPath, '..', requireText);
   let json = null;
 
@@ -40,6 +38,13 @@ const readJSON = (node, state) => {
   return json;
 };
 
+const readJSONNode = (node, state) => {
+  let path = state.file.opts.filename;
+  let requireText = node.arguments[0].value;
+
+  return readJSON(path, requireText);
+}
+
 const replacePath = (path, value) => {
   path.replaceWith(t.expressionStatement(t.valueToNode(value)));
 };
@@ -51,7 +56,7 @@ export default function () {
         let { node } = path;
 
         if (isMatchedRequireCall(node, state)) {
-          const json = readJSON(node, state);
+          const json = readJSONNode(node, state);
 
           if (json) {
             replacePath(path, json);
@@ -63,10 +68,37 @@ export default function () {
         let { node } = path;
 
         if (isMatchedRequireCall(node.object, state)) {
-          const json = readJSON(node.object, state);
+          const json = readJSONNode(node.object, state);
 
           if (json) {
             replacePath(path, json[node.property.name]);
+          }
+        }
+      },
+
+      ImportDeclaration(path, state) {
+        let { node } = path;
+
+        const jsonPath = node.source.value
+        const json = readJSON(state.file.opts.filename, jsonPath);
+
+        if (json) {
+          const variables = node.specifiers.map((specifier) => {
+            if (t.isImportSpecifier(specifier)) {
+              const name = specifier.imported.name;
+
+              return t.variableDeclarator(t.identifier(name), t.valueToNode(json[name]));
+            } else if (t.isImportNamespaceSpecifier(specifier)) {
+              const name = specifier.local.name;
+
+              return t.variableDeclarator(t.identifier(name), t.valueToNode(json));
+            }
+
+            return null;
+          }).filter(Boolean);
+
+          if (variables.length) {
+            path.replaceWith(t.variableDeclaration('const', variables));
           }
         }
       }
