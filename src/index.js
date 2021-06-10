@@ -84,13 +84,18 @@ export default function () {
 
         if (json) {
           const variables = node.specifiers.map((specifier) => {
-            const name = specifier.imported.name;
+            if (t.isImportSpecifier(specifier)) {
+              const name = specifier.imported.name;
 
-            return t.variableDeclarator(t.identifier(name), t.valueToNode(json[name]));
-          });
+              return t.variableDeclarator(t.identifier(name), t.valueToNode(json[name]));
+            }
 
-          path.replaceWith(t.variableDeclaration('const', variables));
+            return null;
+          }).filter(Boolean);
 
+          if (variables.length) {
+            path.replaceWith(t.variableDeclaration('const', variables));
+          }
         }
       }
     }
