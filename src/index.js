@@ -1,7 +1,7 @@
 import nodePath from 'path';
 import fs from 'fs';
 import resolve from 'resolve';
-import * as t from 'babel-types';
+import * as t from '@babel/types';
 
 const isMatchedRequireCall = (node, state) => {
   let re = new RegExp(state.opts.matchPattern, 'g');
