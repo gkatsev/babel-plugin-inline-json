@@ -1,8 +1,10 @@
+"use strict";
+
 var config = {
-  foo: 'bar'
+  foo: "bar"
 };
-var foo = 'bar';
-var name = 'babel-plugin-inline-json';
+var foo = "bar";
+var name = "babel-plugin-inline-json";
 
 var foo = require('@babel/register');
 
