@@ -88,6 +88,10 @@ export default function () {
               const name = specifier.imported.name;
 
               return t.variableDeclarator(t.identifier(name), t.valueToNode(json[name]));
+            } else if (t.isImportNamespaceSpecifier(specifier)) {
+              const name = specifier.local.name;
+
+              return t.variableDeclarator(t.identifier(name), t.valueToNode(json));
             }
 
             return null;
